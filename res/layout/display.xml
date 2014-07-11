@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<EditText
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/display"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-</LinearLayout>
+    android:layout_height="wrap_content"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:gravity="center"
+    android:textSize="40sp"
+    android:textStyle="bold"
+    android:textColor="@color/nearly_black"
+    android:editable="false"
+    android:maxLength="10"
+    android:inputType="none"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:background="@android:color/white"/>
