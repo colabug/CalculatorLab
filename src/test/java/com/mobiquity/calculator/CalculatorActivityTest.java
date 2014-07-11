@@ -40,4 +40,11 @@ public class CalculatorActivityTest
         assertNotNull( activity.getFragmentManager()
                                .findFragmentById( R.id.display_fragment ) );
     }
+
+    @Test
+    public void shouldHaveButtonFragment() throws Exception
+    {
+        assertNotNull( activity.getFragmentManager()
+                               .findFragmentById( R.id.button_fragment ) );
+    }
 }
