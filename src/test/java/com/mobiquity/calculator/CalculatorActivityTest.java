@@ -33,4 +33,11 @@ public class CalculatorActivityTest
     {
         assertNotNull( activity );
     }
+
+    @Test
+    public void shouldHaveDisplayFragment() throws Exception
+    {
+        assertNotNull( activity.getFragmentManager()
+                               .findFragmentById( R.id.display_fragment ) );
+    }
 }

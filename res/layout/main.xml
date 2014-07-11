@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <fragment
+        android:id="@+id/display_fragment"
+        android:name="com.mobiquity.calculator.DisplayFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello World, CalculatorActivity"/>
+        android:layout_height="wrap_content"/>
 </LinearLayout>
 
