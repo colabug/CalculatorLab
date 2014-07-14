@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/button_margin"
+
+    android:orientation="vertical">
 
     <fragment
         android:id="@+id/display_fragment"
         android:name="com.mobiquity.calculator.DisplayFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_marginLeft="@dimen/display_margin"
+        android:layout_marginRight="@dimen/display_margin"
+        android:layout_height="@dimen/display_height"
+        android:layout_marginBottom="@dimen/button_margin"/>
 
     <fragment
         android:id="@+id/button_fragment"

@@ -40,11 +40,10 @@
               an EditText to look like a TextView-->
     <style name="Result" parent="android:TextAppearance.Large">
         <item name="android:layout_height">@dimen/display_height</item>
-        <item name="android:layout_margin">@dimen/button_margin</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:gravity">center</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:maxLength">10</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/display_text_size</item>
         <item name="android:textColor">@color/nearly_black</item>
         <item name="android:editable">false</item>

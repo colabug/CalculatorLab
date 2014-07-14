@@ -15,4 +15,5 @@
     <!--Display-->
     <dimen name="display_height">125dp</dimen>
     <dimen name="display_text_size">40sp</dimen>
+    <dimen name="display_margin">@dimen/button_margin</dimen>
 </resources>

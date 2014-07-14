@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!--Keys-->
+    <dimen name="button_dimensions">78dp</dimen>
+    <dimen name="button_margin">4dp</dimen>
+    <dimen name="key_text_size">50sp</dimen>
+
+    <!--Zero-->
+    <dimen name="zero_key_width">164dp</dimen>
+
+    <!--Equals-->
+    <dimen name="equals_button_width">250dp</dimen>
+
+    <!--Display-->
+    <dimen name="display_margin">8dp</dimen>
+    <dimen name="display_text_size">40sp</dimen>
+</resources>
