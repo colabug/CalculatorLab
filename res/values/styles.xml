@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <style name="BaseButton">
+        <item name="android:layout_width">@dimen/button_dimensions</item>
+        <item name="android:layout_height">@dimen/button_dimensions</item>
+        <item name="android:layout_margin">@dimen/button_margin</item>
+        <item name="android:textSize">@dimen/key_text_size</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <!--Number-->
+    <style name="Number" parent="BaseButton">
+        <item name="android:background">@color/brown</item>
+    </style>
+
+    <!--Zero-->
+    <style name="Zero" parent="Number">
+        <item name="android:layout_width">@dimen/zero_key_width</item>
+    </style>
+
+    <!--Operator-->
+    <style name="Operator" parent="BaseButton">
+        <item name="android:background">@color/green</item>
+    </style>
+
+    <!--Equals-->
+    <style name="Equals" parent="BaseButton">
+        <item name="android:layout_width">@dimen/equals_button_width</item>
+        <item name="android:background">@color/blue</item>
+    </style>
+
+    <!--Clear-->
+    <style name="Clear" parent="BaseButton">
+        <item name="android:background">@color/red</item>
+    </style>
+
+    <!--Result Display-->
+    <!--NOTE: TextView doesn't limit number of characters, so we're hacking
+              an EditText to look like a TextView-->
+    <style name="Result" parent="android:TextAppearance.Large">
+        <item name="android:layout_height">@dimen/display_height</item>
+        <item name="android:layout_margin">@dimen/button_margin</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxLength">10</item>
+        <item name="android:textSize">@dimen/display_text_size</item>
+        <item name="android:textColor">@color/nearly_black</item>
+        <item name="android:editable">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+</resources>
