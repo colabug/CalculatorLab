@@ -10,6 +10,9 @@ import com.squareup.otto.Bus;
 public class CalculatorApplication extends Application
 {
     private static CalculatorApplication instance = new CalculatorApplication();
+//    private CalculatorApplication()
+//    {
+//    }
 
     private Bus bus;
 
