@@ -13,10 +13,6 @@ public class CalculatorApplication extends Application
 
     private Bus bus;
 
-    private CalculatorApplication()
-    {
-    }
-
     public static CalculatorApplication getInstance()
     {
         return instance;
