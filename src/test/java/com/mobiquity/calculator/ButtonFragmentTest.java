@@ -164,7 +164,7 @@ public class ButtonFragmentTest
     @Config (qualifiers = "ja")
     public void shouldHaveJa0Key()
     {
-        verifyKey( R.id.key0, R.string.key0, "零");
+        verifyKey( R.id.key0, R.string.key0, "零" );
     }
 
     private void verifyKey( int id, int stringId, String expectedString )
@@ -172,11 +172,11 @@ public class ButtonFragmentTest
         Button key = (Button) getViewById( id );
         assertViewIsVisible( key );
 
-        String resourcesString = getString( stringId );
+        String resourceString = getString( stringId );
         assertThat( key.getText().toString(),
-                    equalTo( resourcesString ) );
+                    equalTo( resourceString ) );
         assertThat( expectedString,
-                    equalTo( resourcesString ) );
+                    equalTo( resourceString ) );
     }
 
     @Test
