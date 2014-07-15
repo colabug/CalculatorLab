@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!--Keys-->
+    <string name="key1">一</string>
+    <string name="key2">二</string>
+    <string name="key3">三</string>
+    <string name="key4">四</string>
+    <string name="key5">五</string>
+    <string name="key6">六</string>
+    <string name="key7">七</string>
+    <string name="key8">八</string>
+    <string name="key9">九</string>
+    <string name="key0">零</string>
+</resources>

@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import static com.mobiquity.support.Assert.assertViewIsVisible;
 import static com.mobiquity.support.FragmentUtil.startFragment;
@@ -41,91 +42,141 @@ public class ButtonFragmentTest
     @Test
     public void shouldHave1Key() throws Exception
     {
-        Button key1 = (Button) getViewById( R.id.key1 );
-        assertViewIsVisible( key1 );
-        assertThat( key1.getText().toString(),
-                    equalTo( getString( R.string.key1 ) ) );
+        verifyKey( R.id.key1, R.string.key1, "1" );
+    }
+
+    @Test
+    @Config (qualifiers = "ja")
+    public void shouldHaveJa1Key()
+    {
+        verifyKey( R.id.key1, R.string.key1, "一" );
     }
 
     @Test
     public void shouldHave2Key() throws Exception
     {
-        Button key2 = (Button) getViewById( R.id.key2 );
-        assertViewIsVisible( key2 );
-        assertThat( key2.getText().toString(),
-                    equalTo( getString( R.string.key2 ) ) );
+        verifyKey( R.id.key2, R.string.key2, "2" );
+    }
+
+    @Test
+    @Config (qualifiers = "ja")
+    public void shouldHaveJa2Key()
+    {
+        verifyKey( R.id.key2, R.string.key2, "二");
     }
 
     @Test
     public void shouldHave3Key() throws Exception
     {
-        Button key3 = (Button) getViewById( R.id.key3 );
-        assertViewIsVisible( key3 );
-        assertThat( key3.getText().toString(),
-                    equalTo( getString( R.string.key3 ) ) );
+        verifyKey( R.id.key3, R.string.key3, "3");
+    }
+
+    @Test
+    @Config (qualifiers = "ja")
+    public void shouldHaveJa3Key()
+    {
+        verifyKey( R.id.key3, R.string.key3, "三");
     }
 
     @Test
     public void shouldHave4Key() throws Exception
     {
-        Button key4 = (Button) getViewById( R.id.key4 );
-        assertViewIsVisible( key4 );
-        assertThat( key4.getText().toString(),
-                    equalTo( getString( R.string.key4 ) ) );
+        verifyKey( R.id.key4, R.string.key4, "4");
+    }
+
+    @Test
+    @Config (qualifiers = "ja")
+    public void shouldHaveJa4Key()
+    {
+        verifyKey( R.id.key4, R.string.key4, "四");
     }
 
     @Test
     public void shouldHave5Key() throws Exception
     {
-        Button key5 = (Button) getViewById( R.id.key5 );
-        assertViewIsVisible( key5 );
-        assertThat( key5.getText().toString(),
-                    equalTo( getString( R.string.key5 ) ) );
+        verifyKey( R.id.key5, R.string.key5, "5");
+    }
+
+    @Test
+    @Config (qualifiers = "ja")
+    public void shouldHaveJa5Key()
+    {
+        verifyKey( R.id.key5, R.string.key5, "五");
     }
 
     @Test
     public void shouldHave6Key() throws Exception
     {
-        Button key6 = (Button) getViewById( R.id.key6 );
-        assertViewIsVisible( key6 );
-        assertThat( key6.getText().toString(),
-                    equalTo( getString( R.string.key6 ) ) );
+        verifyKey( R.id.key6, R.string.key6, "6");
+    }
+
+    @Test
+    @Config (qualifiers = "ja")
+    public void shouldHaveJa6Key()
+    {
+        verifyKey( R.id.key6, R.string.key6, "六");
     }
 
     @Test
     public void shouldHave7Key() throws Exception
     {
-        Button key7 = (Button) getViewById( R.id.key7 );
-        assertViewIsVisible( key7 );
-        assertThat( key7.getText().toString(),
-                    equalTo( getString( R.string.key7 ) ) );
+        verifyKey( R.id.key7, R.string.key7, "7");
+    }
+    @Test
+    @Config (qualifiers = "ja")
+    public void shouldHaveJa7Key()
+    {
+        verifyKey( R.id.key7, R.string.key7, "七");
     }
 
     @Test
     public void shouldHave8Key() throws Exception
     {
-        Button key8 = (Button) getViewById( R.id.key8 );
-        assertViewIsVisible( key8 );
-        assertThat( key8.getText().toString(),
-                    equalTo( getString( R.string.key8 ) ) );
+        verifyKey( R.id.key8, R.string.key8, "8");
+    }
+    @Test
+    @Config (qualifiers = "ja")
+    public void shouldHaveJa8Key()
+    {
+        verifyKey( R.id.key8, R.string.key8, "八");
     }
 
     @Test
     public void shouldHave9Key() throws Exception
     {
-        Button key9 = (Button) getViewById( R.id.key9 );
-        assertViewIsVisible( key9 );
-        assertThat( key9.getText().toString(),
-                    equalTo( getString( R.string.key9 ) ) );
+        verifyKey( R.id.key9, R.string.key9, "9");
+    }
+
+    @Test
+    @Config (qualifiers = "ja")
+    public void shouldHaveJa9Key()
+    {
+        verifyKey( R.id.key9, R.string.key9, "九");
     }
 
     @Test
     public void shouldHave0Key() throws Exception
     {
-        Button key0 = (Button) getViewById( R.id.key0 );
-        assertViewIsVisible( key0 );
-        assertThat( key0.getText().toString(),
-                    equalTo( getString( R.string.key0 ) ) );
+        verifyKey( R.id.key0, R.string.key0, "0");
+    }
+
+    @Test
+    @Config (qualifiers = "ja")
+    public void shouldHaveJa0Key()
+    {
+        verifyKey( R.id.key0, R.string.key0, "零");
+    }
+
+    private void verifyKey( int id, int stringId, String expectedString )
+    {
+        Button key = (Button) getViewById( id );
+        assertViewIsVisible( key );
+
+        String resourcesString = getString( stringId );
+        assertThat( key.getText().toString(),
+                    equalTo( resourcesString ) );
+        assertThat( expectedString,
+                    equalTo( resourcesString ) );
     }
 
     @Test
