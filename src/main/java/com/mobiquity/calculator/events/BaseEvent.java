@@ -1,4 +1,4 @@
-package com.mobiquity.calculator;
+package com.mobiquity.calculator.events;
 
 /**
  * @since 1.0

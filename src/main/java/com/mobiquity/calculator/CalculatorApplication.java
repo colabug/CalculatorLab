@@ -4,6 +4,7 @@ import android.app.Application;
 
 import android.content.res.Configuration;
 import android.util.Log;
+import com.mobiquity.calculator.events.BaseEvent;
 import com.squareup.otto.Bus;
 
 /**
