@@ -2,6 +2,9 @@ package com.mobiquity.calculator;
 
 import android.widget.Button;
 
+import com.mobiquity.calculator.events.BaseEvent;
+import com.mobiquity.calculator.events.NumberButtonEvent;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +20,7 @@ import static com.mobiquity.support.ResourceLocator.getString;
 import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @since 1.0
@@ -25,7 +29,7 @@ import static org.junit.Assert.assertThat;
 
 public class ButtonFragmentTest
 {
-    private ButtonFragment buttonFragment;
+    private TestButtonFragment buttonFragment;
 
     private class ButtonTestValues
     {
@@ -44,7 +48,7 @@ public class ButtonFragmentTest
     @Before
     public void setUp() throws Exception
     {
-        buttonFragment = new ButtonFragment();
+        buttonFragment = new TestButtonFragment();
         startFragment( buttonFragment );
     }
 
@@ -55,14 +59,82 @@ public class ButtonFragmentTest
     }
 
     @Test
-    public void shouldVerifyEnglishButtons() throws Exception
+    public void shouldVerifyEnglishNumberButtons() throws Exception
     {
         for ( ButtonTestValues button : createEnglishList() )
         {
-            verifyButton( button.id,
-                          button.stringId,
-                          button.expectedString );
+            verifyNumberButton( button.id,
+                                button.stringId,
+                                button.expectedString );
         }
+    }
+
+    @Test
+    @Config (qualifiers = "ja")
+    public void shouldHaveJapaneseNumberButtons()
+    {
+        ArrayList<ButtonTestValues> japaneseList = createJapaneseList();
+        for ( ButtonTestValues e : japaneseList )
+        {
+            verifyNumberButton( e.id, e.stringId, e.expectedString );
+        }
+    }
+
+    private void verifyNumberButton( int id,
+                                     int stringId,
+                                     String expectedString )
+    {
+        Button key = getButton( id );
+        assertViewIsVisible( key );
+
+        String resourceString = getString( stringId );
+        verifyButtonText( expectedString,
+                          key.getText().toString(),
+                          resourceString );
+
+        verifyNumberClickEvent( key, resourceString );
+    }
+
+    private void verifyNumberClickEvent( Button key, String resourceString )
+    {
+        key.performClick();
+        BaseEvent event = buttonFragment.getEvent();
+        assertTrue( event instanceof NumberButtonEvent );
+        assertThat( ( (NumberButtonEvent) event ).getNumber(),
+                    equalTo( resourceString ) );
+    }
+
+    private void verifyButtonText( String expectedString,
+                                   String configuredString,
+                                   String resourceString )
+    {
+        assertThat( configuredString, equalTo( resourceString ) );
+        assertThat( expectedString, equalTo( resourceString ) );
+    }
+
+    @Test
+    public void shouldVerifyOperatorButtons() throws Exception
+    {
+        for ( ButtonTestValues button : createOperatorsList() )
+        {
+            verifyOperator( button.id,
+                            button.stringId,
+                            button.expectedString );
+        }
+    }
+
+    private void verifyOperator( int id, int stringId, String expectedString )
+    {
+        Button key = getButton( id );
+        assertViewIsVisible( key );
+        verifyButtonText( expectedString,
+                          key.getText().toString(),
+                          getString( stringId ) );
+    }
+
+    private Button getButton( int id )
+    {
+        return (Button) buttonFragment.getView().findViewById( id );
     }
 
     private ArrayList<ButtonTestValues> createEnglishList()
@@ -79,26 +151,8 @@ public class ButtonFragmentTest
         englishList.add( new ButtonTestValues( R.id.key8, R.string.key8, "8" ) );
         englishList.add( new ButtonTestValues( R.id.key9, R.string.key9, "9" ) );
         englishList.add( new ButtonTestValues( R.id.key0, R.string.key0, "0" ) );
-        englishList.add( new ButtonTestValues( R.id.plus, R.string.plus, "+" ) );
-        englishList.add( new ButtonTestValues( R.id.minus, R.string.minus, "-" ) );
-        englishList.add( new ButtonTestValues( R.id.multiply, R.string.multiply, "*" ) );
-        englishList.add( new ButtonTestValues( R.id.divide, R.string.divide, "/" ) );
-        englishList.add( new ButtonTestValues( R.id.modulo, R.string.modulo, "%" ) );
-        englishList.add( new ButtonTestValues( R.id.equal, R.string.equal, "=" ) );
-        englishList.add( new ButtonTestValues( R.id.clear, R.string.clear, "C" ) );
 
         return englishList;
-    }
-
-    @Test
-    @Config (qualifiers = "ja")
-    public void shouldHaveJapaneseButtons()
-    {
-        ArrayList<ButtonTestValues> japaneseList = createJapaneseList();
-        for ( ButtonTestValues e : japaneseList )
-        {
-            verifyButton( e.id, e.stringId, e.expectedString );
-        }
     }
 
     private ArrayList<ButtonTestValues> createJapaneseList()
@@ -119,13 +173,34 @@ public class ButtonFragmentTest
         return japaneseList;
     }
 
-    private void verifyButton( int id, int stringId, String expectedString )
+    private ArrayList<ButtonTestValues> createOperatorsList()
     {
-        Button key = (Button) buttonFragment.getView().findViewById( id );
-        assertViewIsVisible( key );
+        ArrayList<ButtonTestValues> englishList = new ArrayList<ButtonTestValues>();
 
-        String resourceString = getString( stringId );
-        assertThat( key.getText().toString(), equalTo( resourceString ) );
-        assertThat( expectedString, equalTo( resourceString ) );
+        englishList.add( new ButtonTestValues( R.id.plus, R.string.plus, "+" ) );
+        englishList.add( new ButtonTestValues( R.id.minus, R.string.minus, "-" ) );
+        englishList.add( new ButtonTestValues( R.id.multiply, R.string.multiply, "*" ) );
+        englishList.add( new ButtonTestValues( R.id.divide, R.string.divide, "/" ) );
+        englishList.add( new ButtonTestValues( R.id.modulo, R.string.modulo, "%" ) );
+        englishList.add( new ButtonTestValues( R.id.equal, R.string.equal, "=" ) );
+        englishList.add( new ButtonTestValues( R.id.clear, R.string.clear, "C" ) );
+
+        return englishList;
+    }
+
+    class TestButtonFragment extends ButtonFragment
+    {
+        private BaseEvent event;
+
+        @Override
+        public void postToBus( BaseEvent event )
+        {
+            this.event = event;
+        }
+
+        BaseEvent getEvent()
+        {
+            return event;
+        }
     }
 }

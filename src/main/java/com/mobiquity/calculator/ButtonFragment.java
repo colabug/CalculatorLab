@@ -19,7 +19,7 @@ import static com.mobiquity.calculator.CalculatorApplication.postToBus;
 /**
  * @since 1.0
  */
-public class ButtonFragment extends Fragment
+public class ButtonFragment extends BaseFragment
 {
     private static final String TAG = "Lifecycle " + ButtonFragment.class.getSimpleName();
     private View layout;
