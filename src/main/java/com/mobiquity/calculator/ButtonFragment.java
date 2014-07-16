@@ -67,11 +67,6 @@ public class ButtonFragment extends Fragment
             public void onClick( View view )
             {
                 String number = ( (Button) view ).getText().toString();
-                Toast.makeText( getActivity(),
-                                "Clicked: " + number,
-                                Toast.LENGTH_SHORT)
-                     .show();
-
                 postToBus( new NumberButtonEvent( number ) );
             }
         };

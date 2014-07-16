@@ -5,6 +5,12 @@ import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.mobiquity.calculator.events.NumberButtonEvent;
+
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 public class CalculatorActivity extends Activity
 {
@@ -23,6 +29,20 @@ public class CalculatorActivity extends Activity
                             .add( new CalculatorStateFragment(),
                                   CALCULATOR_STATE_FRAGMENT_TAG )
                             .commit();
+    }
+
+    /**
+     * Handles the selection of a number.
+     *
+     * @param event - number entered
+     */
+    @Subscribe
+    public void onNumberSelected( NumberButtonEvent event )
+    {
+        Toast.makeText( this,
+                        "Clicked: " + event.getNumber(),
+                        Toast.LENGTH_SHORT )
+             .show();
     }
 
     @Override
@@ -51,6 +71,20 @@ public class CalculatorActivity extends Activity
     {
         super.onResume();
         Log.d( TAG, "onResume()" );
+        getBus().register( this );
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        Log.d( TAG, "onPause()" );
+        getBus().unregister( this );
+    }
+
+    protected Bus getBus()
+    {
+        return CalculatorApplication.getInstance().getBus();
     }
 
     @Override
@@ -65,13 +99,6 @@ public class CalculatorActivity extends Activity
     {
         super.onSaveInstanceState( outState );
         Log.d( TAG, "onSaveInstanceState()" );
-    }
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-        Log.d( TAG, "onPause()" );
     }
 
     @Override
