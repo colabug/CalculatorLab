@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
+import static com.mobiquity.calculator.CalculatorActivity.*;
 import static junit.framework.Assert.assertNotNull;
 
 /**
@@ -46,5 +47,12 @@ public class CalculatorActivityTest
     {
         assertNotNull( activity.getFragmentManager()
                                .findFragmentById( R.id.button_fragment ) );
+    }
+
+    @Test
+    public void shouldHaveCalculatorStateFragment() throws Exception
+    {
+        assertNotNull( activity.getFragmentManager()
+                               .findFragmentByTag( CALCULATOR_STATE_FRAGMENT_TAG ) );
     }
 }

@@ -10,15 +10,19 @@ public class CalculatorActivity extends Activity
 {
     private static final String TAG = "Lifecycle " + CalculatorActivity.class.getSimpleName();
 
-    /**
-     * Called when the activity is first created.
-     */
+    protected static final String CALCULATOR_STATE_FRAGMENT_TAG = "calculator state";
+
     @Override
     public void onCreate( Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.main );
         Log.d( TAG, "onCreate()" );
+
+        getFragmentManager().beginTransaction()
+                            .add( new CalculatorStateFragment(),
+                                  CALCULATOR_STATE_FRAGMENT_TAG )
+                            .commit();
     }
 
     @Override
